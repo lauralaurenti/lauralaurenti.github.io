@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ darkMode: false, mobileMenu: false }" :class="{ 'dark': darkMode }">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laura Laurenti | AI & Seismology</title>
+    <title>Laura Laurenti | AI & Seismology @ ETH</title>
+    
+    <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -17,183 +22,242 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        eth: '#1f407a', // ETH Blue accent
+                        eth: '#1f407a',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
+
     <style>
-        [x-cloak] { display: none !important; }
-        html { scroll-behavior: smooth; }
-        .sidebar-link { @apply block py-2 text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors; }
-        .active-link { @apply text-slate-900 dark:text-white font-semibold; }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(9, 9, 11, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bento-card {
+            @apply bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[2rem] p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1;
+        }
     </style>
 </head>
-<body class="bg-white dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 antialiased font-sans">
+<body class="bg-slate-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-500">
 
-    <!-- Mobile Header -->
-    <header class="lg:hidden flex items-center justify-between p-6 border-b border-zinc-100 dark:border-zinc-800 sticky top-0 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md z-50">
-        <span class="font-bold tracking-tight">L. Laurenti</span>
-        <button @click="mobileMenu = !mobileMenu" class="p-2 text-slate-600 dark:text-slate-400">
-            <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-            </svg>
-            <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-    </header>
-
-    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row">
-        
-        <!-- Sidebar Navigation -->
-        <aside :class="mobileMenu ? 'block' : 'hidden'" class="lg:block w-full lg:w-64 lg:h-screen lg:fixed p-8 lg:p-12 border-r border-zinc-100 dark:border-zinc-800 z-40 bg-white dark:bg-zinc-950">
-            <div class="flex flex-col h-full">
-                <div class="mb-10">
-                    <h1 class="text-xl font-bold tracking-tighter uppercase">Laura Laurenti</h1>
-                    <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest">Postdoc @ ETH Zürich</p>
+    <!-- Glassmorphic Navigation -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl">
+        <div class="glass rounded-2xl px-6 py-4 flex items-center justify-between shadow-lg">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-eth rounded-lg flex items-center justify-center text-white font-bold">LL</div>
+                <span class="font-bold tracking-tight hidden sm:block italic">Laura Laurenti</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-6 text-sm font-medium">
+                    <a href="#research" class="hover:text-eth dark:hover:text-blue-400 transition-colors">Research</a>
+                    <a href="#publications" class="hover:text-eth dark:hover:text-blue-400 transition-colors">Publications</a>
+                    <a href="#" class="hover:text-eth dark:hover:text-blue-400 transition-colors">CV (PDF)</a>
                 </div>
+                
+                <div class="h-6 w-px bg-zinc-300 dark:bg-zinc-700"></div>
+                
+                <button id="theme-toggle" class="p-2 rounded-xl hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-                <nav class="space-y-1 flex-grow">
-                    <a href="#bio" @click="mobileMenu = false" class="sidebar-link">Biography</a>
-                    <a href="#research" @click="mobileMenu = false" class="sidebar-link">Research</a>
-                    <a href="#publications" @click="mobileMenu = false" class="sidebar-link">Publications</a>
-                    <a href="#contact" @click="mobileMenu = false" class="sidebar-link">Contact</a>
-                </nav>
-
-                <div class="pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-800 space-y-4">
-                    <!-- Dark Mode Toggle -->
-                    <button @click="darkMode = !darkMode" class="flex items-center gap-2 text-xs text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                        <template x-if="!darkMode">
-                            <span class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-                                Dark Mode
-                            </span>
-                        </template>
-                        <template x-if="darkMode">
-                            <span class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                Light Mode
-                            </span>
-                        </template>
-                    </button>
-                    <div class="flex gap-4 grayscale opacity-60 hover:opacity-100 transition-opacity">
-                        <a href="#" class="text-slate-600 dark:text-slate-400">GH</a>
-                        <a href="#" class="text-slate-600 dark:text-slate-400">GS</a>
-                        <a href="#" class="text-slate-600 dark:text-slate-400">LN</a>
-                    </div>
+    <main class="max-w-6xl mx-auto px-6 pt-32 pb-24">
+        
+        <!-- Hero Section -->
+        <section class="flex flex-col lg:flex-row gap-12 items-center mb-24">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-eth to-blue-400 rounded-[3rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Laura Laurenti" class="relative w-48 h-48 lg:w-64 lg:h-64 rounded-[2.5rem] object-cover border-4 border-white dark:border-zinc-900 shadow-2xl">
+            </div>
+            <div class="flex-1 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-widest mb-4">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Postdoctoral Fellow @ ETH Zürich
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-zinc-900 to-zinc-500 dark:from-white dark:to-zinc-500">
+                    AI for Seismology.
+                </h1>
+                <p class="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+                    Developing high-fidelity neural architectures to decipher Earth's seismic patterns. Bridging the gap between deep learning and geophysical dynamics.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-8">
+                    <a href="#" class="p-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl hover:scale-105 transition-transform">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="p-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl hover:scale-105 transition-transform">
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="mailto:laura@ethz.ch" class="flex items-center gap-2 px-6 py-3 bg-eth text-white rounded-xl font-bold hover:opacity-90 transition-opacity">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Get in touch
+                    </a>
                 </div>
             </div>
-        </aside>
+        </section>
 
-        <!-- Main Content -->
-        <main class="flex-grow lg:ml-64 p-8 lg:p-24 lg:max-w-4xl">
-            
-            <!-- Bio Section -->
-            <section id="bio" class="mb-24 scroll-mt-24">
-                <div class="mb-8 w-16 h-1 bg-eth"></div>
-                <h2 class="text-3xl font-light mb-8 tracking-tight italic">Merging <span class="font-bold not-italic">Deep Learning</span> with <span class="font-bold not-italic">Geophysical Data</span> to predict the heartbeat of the Earth.</h2>
-                <div class="prose dark:prose-invert prose-slate max-w-none space-y-6 text-slate-600 dark:text-zinc-400 leading-relaxed text-lg">
-                    <p>
-                        I am a Postdoctoral Researcher at <strong>ETH Zürich</strong> within the Department of Earth Sciences. My research lies at the intersection of seismology and machine learning, focusing on the development of neural architectures capable of processing massive seismic catalogs.
-                    </p>
-                    <p>
-                        I am currently developing self-supervised learning models to detect low-magnitude micro-seismic events that traditional algorithms often miss. My goal is to enhance early-warning systems and improve our understanding of fault mechanics using AI.
-                    </p>
-                </div>
-            </section>
-
-            <!-- Research Section -->
-            <section id="research" class="mb-24 scroll-mt-24">
-                <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-slate-400 mb-8">Selected Research</h3>
-                <div class="grid gap-12">
-                    <div class="group">
-                        <h4 class="text-xl font-bold group-hover:text-eth transition-colors">Neural Waveform Analysis</h4>
-                        <p class="mt-2 text-slate-600 dark:text-zinc-400">Utilizing Transformers to identify phase arrivals in high-noise environments, outperforming classical STA/LTA methods by 40%.</p>
+        <!-- Bento Research Grid -->
+        <section id="research" class="mb-32">
+            <h2 class="text-3xl font-bold mb-12 tracking-tight">Research & Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Main Research Card -->
+                <div class="bento-card md:col-span-2 flex flex-col justify-between min-h-[400px] overflow-hidden relative group">
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+                        <i data-lucide="activity" class="w-48 h-48"></i>
                     </div>
-                    <div class="group">
-                        <h4 class="text-xl font-bold group-hover:text-eth transition-colors">Physics-Informed Neural Networks (PINNs)</h4>
-                        <p class="mt-2 text-slate-600 dark:text-zinc-400">Integrating elastodynamic equations into the loss functions of CNNs to ensure geophysically consistent predictions.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Publications Section -->
-            <section id="publications" class="mb-24 scroll-mt-24">
-                <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-slate-400 mb-8">Selected Publications</h3>
-                <div class="space-y-10">
-                    
-                    <!-- Pub 1 -->
-                    <div x-data="{ showBib: false }" class="relative pl-6 border-l border-zinc-100 dark:border-zinc-800">
-                        <p class="text-xs font-mono text-eth mb-1">2024</p>
-                        <h4 class="text-lg font-bold leading-snug">Deep Learning for Global Seismic Phase Classification</h4>
-                        <p class="text-sm mt-1 text-slate-600 dark:text-zinc-400">
-                            <strong>Laurenti, L.</strong>, van der Meer, S., & Giardini, D. 
-                            <span class="italic text-slate-400">JGR Solid Earth</span>.
+                    <div class="relative z-10">
+                        <span class="text-eth font-mono font-bold text-sm">Focus Area 01</span>
+                        <h3 class="text-3xl font-bold mt-4 mb-6 leading-tight">Physics-Informed <br>Neural Networks</h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 max-w-md text-lg">
+                            We integrate elastodynamic equations directly into deep learning loss functions to ensure seismic predictions remain geophysically valid.
                         </p>
-                        <div class="mt-3 flex gap-4">
-                            <a href="#" class="text-xs font-bold uppercase tracking-widest hover:text-eth transition">Paper</a>
-                            <button @click="showBib = !showBib" class="text-xs font-bold uppercase tracking-widest hover:text-eth transition text-slate-400">BibTeX</button>
+                    </div>
+                    <div class="mt-8 flex gap-2">
+                        <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-full text-xs font-bold uppercase tracking-wider">PyTorch</span>
+                        <span class="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-full text-xs font-bold uppercase tracking-wider">HPC</span>
+                    </div>
+                </div>
+
+                <!-- Secondary Card -->
+                <div class="bento-card col-span-1 bg-gradient-to-br from-eth to-blue-900 text-white border-none shadow-xl">
+                    <i data-lucide="waves" class="w-10 h-10 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4 italic">Micro-Seismic Detection</h3>
+                    <p class="text-blue-100 leading-relaxed">
+                        Detecting ultra-low magnitude events using self-supervised Transformer models.
+                    </p>
+                    <div class="mt-12 text-sm font-mono opacity-60">Success Rate: +42%</div>
+                </div>
+
+                <!-- Small Grid Items -->
+                <div class="bento-card col-span-1">
+                    <i data-lucide="database" class="w-8 h-8 text-eth mb-4"></i>
+                    <h4 class="font-bold mb-2">Large Scale Catalogs</h4>
+                    <p class="text-sm text-zinc-500">Processing over 50 years of global seismic wave data.</p>
+                </div>
+                
+                <div class="bento-card col-span-1">
+                    <i data-lucide="cpu" class="w-8 h-8 text-eth mb-4"></i>
+                    <h4 class="font-bold mb-2">Real-time Warning</h4>
+                    <p class="text-sm text-zinc-500">Optimizing inference latency for early detection systems.</p>
+                </div>
+
+                <div class="bento-card col-span-1 flex items-center justify-center border-dashed">
+                    <button class="flex flex-col items-center gap-2 group">
+                        <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-eth group-hover:text-white transition-colors">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
                         </div>
-                        <div x-show="showBib" x-cloak x-transition class="mt-4 p-4 bg-zinc-50 dark:bg-zinc-900 rounded text-[10px] font-mono leading-relaxed overflow-x-auto border border-zinc-100 dark:border-zinc-800">
-<pre>@article{laurenti2024deep,
+                        <span class="text-xs font-bold uppercase tracking-widest text-zinc-400">View Projects</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 tracking-tight">Recent Publications</h2>
+            <div class="space-y-8">
+                
+                <!-- Publication 1 -->
+                <div class="group relative bg-white dark:bg-zinc-900/50 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-eth transition-colors">
+                    <div class="flex flex-col md:flex-row justify-between gap-6">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-xs font-mono font-bold text-eth bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded">2024</span>
+                                <span class="text-xs text-zinc-400 italic">JGR Solid Earth</span>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-eth transition-colors">Deep Learning for Global Seismic Phase Classification</h3>
+                            <p class="text-sm text-zinc-500 mt-2 italic">
+                                Laurenti, L., van der Meer, S., & Giardini, D.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <button onclick="toggleBib('bib1')" class="px-4 py-2 text-xs font-bold border border-zinc-200 dark:border-zinc-800 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 flex items-center gap-2">
+                                <i data-lucide="quote" class="w-3 h-3"></i> Cite
+                            </button>
+                            <a href="#" class="px-4 py-2 text-xs font-bold bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl flex items-center gap-2 hover:opacity-80">
+                                <i data-lucide="external-link" class="w-3 h-3"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- BibTeX Block -->
+                    <div id="bib1" class="hidden mt-6 overflow-hidden">
+                        <div class="relative">
+                            <pre class="bg-zinc-50 dark:bg-zinc-950 p-4 rounded-xl text-[10px] font-mono text-zinc-600 dark:text-zinc-400 overflow-x-auto border border-zinc-100 dark:border-zinc-800">
+@article{laurenti2024deep,
   title={Deep Learning for Global Seismic Phase Classification},
   author={Laurenti, Laura and van der Meer, S. and Giardini, Domenico},
   journal={JGR Solid Earth},
   year={2024}
 }</pre>
+                            <button onclick="copyBib('bib1')" class="absolute top-2 right-2 p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-lg transition-colors">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
                         </div>
-                    </div>
-
-                    <!-- Pub 2 -->
-                    <div x-data="{ showBib: false }" class="relative pl-6 border-l border-zinc-100 dark:border-zinc-800">
-                        <p class="text-xs font-mono text-eth mb-1">2023</p>
-                        <h4 class="text-lg font-bold leading-snug">Self-supervised detection of micro-seismicity</h4>
-                        <p class="text-sm mt-1 text-slate-600 dark:text-zinc-400">
-                            Zhang, Y., <strong>Laurenti, L.</strong>, & Meier, M. 
-                            <span class="italic text-slate-400">Nature Communications</span>.
-                        </p>
-                        <div class="mt-3 flex gap-4">
-                            <a href="#" class="text-xs font-bold uppercase tracking-widest hover:text-eth transition">Paper</a>
-                            <button @click="showBib = !showBib" class="text-xs font-bold uppercase tracking-widest hover:text-eth transition text-slate-400">BibTeX</button>
-                        </div>
-                        <div x-show="showBib" x-cloak x-transition class="mt-4 p-4 bg-zinc-50 dark:bg-zinc-900 rounded text-[10px] font-mono leading-relaxed overflow-x-auto">
-<pre>@article{zhang2023self,
-  title={Self-supervised detection of micro-seismicity},
-  author={Zhang, Y. and Laurenti, Laura and Meier, M.},
-  journal={Nature Communications},
-  year={2023}
-}</pre>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="mb-24 scroll-mt-24">
-                <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-slate-400 mb-8">Contact</h3>
-                <div class="bg-zinc-50 dark:bg-zinc-900 p-8 rounded-2xl">
-                    <p class="text-lg mb-6">Interested in collaborations or PhD opportunities? Reach out.</p>
-                    <div class="space-y-2">
-                        <p class="flex items-center gap-3">
-                            <span class="w-12 text-xs uppercase font-bold text-slate-400">Mail</span>
-                            <a href="mailto:laura.laurenti@erdw.ethz.ch" class="font-medium hover:text-eth transition underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4">laura.laurenti@erdw.ethz.ch</a>
-                        </p>
-                        <p class="flex items-center gap-3">
-                            <span class="w-12 text-xs uppercase font-bold text-slate-400">Office</span>
-                            <span class="text-slate-600 dark:text-zinc-400">NO H 61, Sonneggstrasse 5, 8092 Zürich</span>
-                        </p>
                     </div>
                 </div>
-            </section>
 
-            <footer class="pt-12 border-t border-zinc-100 dark:border-zinc-800 text-[10px] text-slate-400 uppercase tracking-widest">
-                &copy; 2025 Laura Laurenti • ETH Zürich • Built with Tailwind CSS
-            </footer>
-        </main>
-    </div>
+            </div>
+        </section>
 
+    </main>
+
+    <footer class="max-w-6xl mx-auto px-6 py-12 border-t border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-500 text-sm">
+        <p>&copy; 2026 Laura Laurenti. Built with Tailwind & Passion for Science.</p>
+        <div class="flex gap-8">
+            <a href="#" class="hover:text-eth transition-colors">ETH Zürich</a>
+            <a href="#" class="hover:text-eth transition-colors">Google Scholar</a>
+            <a href="#" class="hover:text-eth transition-colors">ORCID</a>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // BibTeX Logic
+        function toggleBib(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+
+        function copyBib(id) {
+            const text = document.querySelector(`#${id} pre`).innerText;
+            navigator.clipboard.writeText(text);
+            alert('BibTeX copied to clipboard!');
+        }
+    </script>
 </body>
 </html>
