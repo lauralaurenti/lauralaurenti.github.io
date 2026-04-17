@@ -1,78 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ mobileMenu: false }">
+<html lang="en" x-data="{ 
+    darkMode: localStorage.getItem('theme') === 'dark', 
+    mobileMenu: false,
+    toggleTheme() {
+        this.darkMode = !this.darkMode;
+        localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+    }
+}" :class="{ 'dark': darkMode }" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Laura Laurenti</title>
+    <title>Laura Laurenti | About</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { accent: '#059669' }
+                }
+            }
         }
     </script>
     <style>
-        .nav-link { @apply relative text-zinc-500 hover:text-zinc-900 transition-colors py-2; }
-        .nav-link.active { @apply text-zinc-900 font-semibold; }
-        .nav-link.active::after { content: ''; @apply absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-emerald-900 rounded-full; }
+        [x-cloak] { display: none !important; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="bg-white text-zinc-900 font-sans antialiased">
+<body class="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-300 antialiased pt-32 transition-colors duration-300 font-sans">
 
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-transparent backdrop-blur-md bg-white/70 dark:bg-zinc-950/70">
         <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-sm font-bold uppercase tracking-[0.2em]">L. Laurenti</a>
-            <div class="hidden md:flex gap-10 text-[11px] uppercase tracking-widest font-bold">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
-                <a href="publications.html" class="nav-link">Publications</a>
+            <a href="index.html" class="font-bold text-lg tracking-tighter uppercase dark:text-white">L. Laurenti</a>
+            <div class="flex items-center gap-4 md:gap-10">
+                <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                    <a href="about.html" class="text-accent">About</a>
+                    <a href="publications.html" class="hover:text-accent transition-colors">Publications</a>
+                </div>
+                <button @click="toggleTheme()" class="p-2 border border-slate-100 dark:border-zinc-800 rounded-full hover:text-accent">
+                    <i data-lucide="moon" x-show="!darkMode" class="w-4 h-4"></i>
+                    <i data-lucide="sun" x-show="darkMode" class="w-4 h-4"></i>
+                </button>
             </div>
-            <button @click="mobileMenu = !mobileMenu" class="md:hidden"><i data-lucide="menu" class="w-6 h-6"></i></button>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 py-24">
-        <section class="mb-32">
-            <h2 class="text-3xl font-bold tracking-tight mb-16">Background</h2>
-            <div class="space-y-12 border-l border-zinc-100 pl-8 relative">
-                <div class="relative">
-                    <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-emerald-900 border-4 border-white"></div>
-                    <h3 class="font-bold">Postdoctoral Researcher</h3>
-                    <p class="text-sm text-zinc-400 mb-2">ETH Zürich • 2024 — Present</p>
-                    <p class="text-zinc-500 max-w-2xl leading-relaxed">Focusing on self-supervised learning for seismic phase classification and physical constraint integration in neural networks.</p>
+    <!-- Bio & Interests -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="max-w-3xl reveal active">
+                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">About / Bio</h2>
+                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400 mb-20">
+                    <p class="mb-6">
+                        I am currently a Postdoctoral Researcher at <strong>ETH Zürich</strong>. My work focuses on the intersection of deep learning and geophysical signals. I am particularly interested in how self-supervised learning can reveal hidden patterns in seismic data.
+                    </p>
+                    <p>
+                        Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I focus on merging physical constraints with data-driven models to improve predictive accuracy.
+                    </p>
                 </div>
-                <div class="relative">
-                    <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-zinc-200 border-4 border-white"></div>
-                    <h3 class="font-bold">PhD in Geophysics</h3>
-                    <p class="text-sm text-zinc-400 mb-2">Previous University • 2020 — 2023</p>
-                    <p class="text-zinc-500 max-w-2xl">Developed Deep Learning architectures for real-time earthquake early warning systems.</p>
+
+                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">Research Interests</h2>
+                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400">
+                    <p>
+                        My current research agenda involves <strong>Neural Seismology</strong>, where we leverage Large Language Models (LLMs) and Transformer architectures to classify seismic phases. I am also exploring <strong>Physics-Informed Neural Networks</strong> to ensure that AI-generated predictions adhere to fundamental physical laws.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section>
-            <h2 class="text-3xl font-bold tracking-tight mb-16">Selected Projects</h2>
-            <div class="grid gap-12">
-                <div class="flex justify-between items-baseline group border-b border-zinc-50 pb-8">
-                    <div>
-                        <h4 class="text-xl font-bold group-hover:text-emerald-900 transition-colors">SeismicNet v2</h4>
-                        <p class="text-zinc-500 mt-2">Transformer-based phase picking on multi-station catalogs.</p>
-                    </div>
-                    <a href="#" class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-emerald-900">GitHub →</a>
+    <!-- Projects Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Selected Projects</h2>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="reveal active group">
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">SeismicNet_Architecture</div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">SeismicNet 2.0</h3>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">A high-fidelity Transformer architecture for multi-station phase picking.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">View Code</a>
                 </div>
-                <div class="flex justify-between items-baseline group border-b border-zinc-50 pb-8">
-                    <div>
-                        <h4 class="text-xl font-bold group-hover:text-emerald-900 transition-colors">WaveformGAN</h4>
-                        <p class="text-zinc-500 mt-2">Synthetic data generation for low-magnitude earthquake events.</p>
-                    </div>
-                    <a href="#" class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-emerald-900">Docs →</a>
+                <div class="reveal active group">
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">GAN_Workflow</div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Micro-Earthquake GAN</h3>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Generating synthetic seismic waveforms to augment sparse training catalogs.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Read Abstract</a>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <script>lucide.createIcons();</script>
+    <!-- Hidden CV Section (ready for toggle) -->
+    <section id="cv-section" class="hidden py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-slate-50 dark:bg-zinc-900 p-8 rounded-2xl flex justify-between items-center border border-slate-100 dark:border-zinc-800">
+                <span class="font-medium dark:text-white">CV_Laura_Laurenti.pdf</span>
+                <a href="CV.pdf" target="_blank" class="px-6 py-2 bg-accent text-white rounded-lg font-bold">Download</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, {threshold: 0.1});
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
