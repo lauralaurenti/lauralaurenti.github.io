@@ -1,71 +1,110 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ mobileMenu: false }">
+<html lang="en" x-data="{ 
+    darkMode: localStorage.getItem('theme') === 'dark', 
+    mobileMenu: false,
+    toggleTheme() {
+        this.darkMode = !this.darkMode;
+        localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+    }
+}" :class="{ 'dark': darkMode }" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laura Laurenti | Home</title>
+    <meta name="google-site-verification" content="130b037ae569b5f5" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { accent: '#059669' }
+                }
+            }
         }
     </script>
     <style>
-        .nav-link { @apply relative text-zinc-500 hover:text-zinc-900 transition-colors py-2; }
-        .nav-link.active { @apply text-zinc-900 font-semibold; }
-        .nav-link.active::after { content: ''; @apply absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-emerald-900 rounded-full; }
+        [x-cloak] { display: none !important; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; }
     </style>
 </head>
-<body class="bg-white text-zinc-900 font-sans antialiased">
+<body class="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-300 antialiased selection:bg-emerald-100 dark:selection:bg-emerald-900 transition-colors duration-300 font-sans">
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-50">
+    <nav class="fixed top-0 w-full z-50 border-b border-transparent backdrop-blur-md bg-white/70 dark:bg-zinc-950/70 transition-all duration-300">
         <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-sm font-bold uppercase tracking-[0.2em]">L. Laurenti</a>
-            
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex gap-10 text-[11px] uppercase tracking-widest font-bold">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="publications.html" class="nav-link">Publications</a>
+            <a href="index.html" class="font-bold text-lg tracking-tighter hover:opacity-70 transition-opacity uppercase dark:text-white">L. Laurenti</a>
+            <div class="flex items-center gap-4 md:gap-10">
+                <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <a href="index.html" class="text-accent">Home</a>
+                    <a href="about.html" class="hover:text-accent transition-colors">About</a>
+                    <a href="publications.html" class="hover:text-accent transition-colors">Publications</a>
+                </div>
+                <button @click="toggleTheme()" class="p-2 text-slate-500 hover:text-accent dark:text-zinc-400 dark:hover:text-accent transition-colors border border-slate-100 dark:border-zinc-800 rounded-full bg-white/50 dark:bg-zinc-900/50">
+                    <i data-lucide="moon" x-show="!darkMode" class="w-4 h-4"></i>
+                    <i data-lucide="sun" x-show="darkMode" class="w-4 h-4"></i>
+                </button>
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2 text-slate-800 dark:text-white"><i data-lucide="menu" class="w-6 h-6"></i></button>
             </div>
-
-            <button @click="mobileMenu = !mobileMenu" class="md:hidden"><i data-lucide="menu" class="w-6 h-6"></i></button>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div x-show="mobileMenu" class="fixed inset-0 z-[60] bg-white p-8 md:hidden">
-        <div class="flex justify-end"><button @click="mobileMenu = false"><i data-lucide="x" class="w-8 h-8"></i></button></div>
-        <div class="flex flex-col gap-8 mt-12 text-3xl font-bold tracking-tighter">
-            <a href="index.html">Home</a>
+    <!-- Mobile Menu Overlay -->
+    <div x-show="mobileMenu" x-transition x-cloak class="fixed inset-0 z-[60] bg-white dark:bg-zinc-950 p-8 flex flex-col">
+        <div class="flex justify-end"><button @click="mobileMenu = false" class="text-slate-800 dark:text-white"><i data-lucide="x" class="w-8 h-8"></i></button></div>
+        <div class="flex flex-col gap-8 mt-12 text-4xl font-bold tracking-tighter dark:text-white">
+            <a href="index.html" class="text-accent">Home</a>
             <a href="about.html">About</a>
             <a href="publications.html">Publications</a>
         </div>
     </div>
 
-    <!-- Hero Content -->
-    <main class="max-w-5xl mx-auto px-6 py-24 md:py-40">
-        <div class="flex flex-col-reverse md:flex-row items-center gap-16">
-            <div class="flex-1 text-center md:text-left">
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[0.9]">Laura Laurenti. <br><span class="text-zinc-400">AI & Seismology.</span></h1>
-                <p class="text-xl text-zinc-500 max-w-lg mb-12 font-light leading-relaxed">
-                    Postdoctoral researcher at ETH Zürich. I develop machine learning frameworks to decode seismic activity and understand Earth's hidden dynamics.
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 px-6">
+        <div class="max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal active">
+                <h1 class="hero-title font-bold tracking-tighter text-slate-900 dark:text-white mb-6">
+                    Hi, I'm Laura. <br><span class="text-slate-400">Researcher at ETH.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-lg font-light italic">
+                    I build AI systems that listen to the Earth's heartbeat to better understand seismology and fault mechanics.
                 </p>
-                <div class="flex justify-center md:justify-start gap-8 text-zinc-400">
-                    <a href="https://github.com/lauralaurenti" class="hover:text-emerald-900 transition-colors"><i data-lucide="github"></i></a>
-                    <a href="https://linkedin.com/in/lauralaurenti/" class="hover:text-emerald-900 transition-colors"><i data-lucide="linkedin"></i></a>
-                    <a href="mailto:laurenti.laura.work@gmail.com" class="hover:text-emerald-900 transition-colors"><i data-lucide="mail"></i></a>
+                <div class="flex items-center gap-6 text-slate-500 dark:text-zinc-400">
+                    <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                    <a href="mailto:laurenti.laura.work@gmail.com" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="mail" class="w-6 h-6"></i></a>
                 </div>
             </div>
-            <div class="w-48 h-48 md:w-80 md:h-80 rounded-full border-4 border-emerald-900/10 p-2">
-                <img src="images/profilePic.jpg" class="w-full h-full object-cover rounded-full shadow-xl" alt="Laura Laurenti">
+            <div class="reveal active flex justify-center md:justify-end">
+                <div class="w-64 h-80 bg-slate-100 dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-zinc-800">
+                    <img src="images/profilePic.jpg" alt="Laura Laurenti" class="w-full h-full object-cover">
+                </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 px-6 border-t border-slate-50 dark:border-zinc-900">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-left">
+                <h2 class="text-4xl font-bold tracking-tighter mb-4 dark:text-white italic">Let's connect.</h2>
+                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Postdoctoral Researcher / Zürich, CH</p>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="mailto:laurenti.laura.work@gmail.com" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-slate-500 hover:text-accent transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4"></i> Email
+                </a>
+                <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-slate-500 hover:text-accent transition-colors">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script>lucide.createIcons();</script>
 </body>
