@@ -46,7 +46,7 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; }
         
-        /* Hidden CV Section style - ready for toggle */
+        /* CV Section hidden by default */
         #cv-section.hidden { display: none; }
     </style>
 </head>
@@ -106,11 +106,12 @@
                     I build AI systems that listen to the Earth's heartbeat to better understand seismology and fault mechanics.
                 </p>
                 <div class="flex items-center gap-6 text-slate-500 dark:text-zinc-400">
-                    <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="graduation-cap" class="w-6 h-6"></i></a>
                     <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                    <a href="mailto:laurenti.laura.work@gmail.com" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="mail" class="w-6 h-6"></i></a>
                 </div>
             </div>
             <div class="reveal flex justify-center md:justify-end">
+                <!-- Photo in full color -->
                 <div class="w-64 h-80 bg-slate-100 dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-zinc-800">
                     <img src="images/profilePic.jpg" alt="Laura Laurenti" class="w-full h-full object-cover">
                 </div>
@@ -128,16 +129,16 @@
                         I am currently a Postdoctoral Researcher at <strong>ETH Zürich</strong>. My work focuses on the intersection of deep learning and geophysical signals. I am particularly interested in how self-supervised learning can reveal hidden patterns in seismic data.
                     </p>
                     <p>
-                        Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I focus on merging physical constraints with data-driven models.
+                        Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I focus on merging physical constraints with data-driven models to improve predictive accuracy.
                     </p>
                 </div>
             </div>
             <div class="md:col-span-2 reveal">
-                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8 font-sans">Research Interests</h2>
+                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">Research Interests</h2>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Neural Seismology</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Deep Learning</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300 font-mono">Signal Processing</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300 font-mono">Deep Learning</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Signal Processing</span>
                 </div>
             </div>
         </div>
@@ -147,7 +148,7 @@
     <section id="cv-section" class="hidden py-32 px-6">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Curriculum Vitae</h2>
-            <div class="bg-slate-50 dark:bg-zinc-900 p-8 rounded-2xl flex justify-between items-center">
+            <div class="bg-slate-50 dark:bg-zinc-900 p-8 rounded-2xl flex justify-between items-center border border-slate-100 dark:border-zinc-800">
                 <span class="font-medium dark:text-white">CV_Laura_Laurenti.pdf</span>
                 <a href="CV.pdf" target="_blank" class="px-6 py-2 bg-accent text-white rounded-lg font-bold">Download</a>
             </div>
@@ -161,13 +162,13 @@
             <div class="grid md:grid-cols-2 gap-16">
                 <div class="reveal group">
                     <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">SeismicNet_Architecture</div>
-                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white">SeismicNet 2.0</h3>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">SeismicNet 2.0</h3>
                     <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">A high-fidelity Transformer architecture for multi-station phase picking.</p>
                     <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">View Code</a>
                 </div>
                 <div class="reveal group">
                     <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">GAN_Workflow</div>
-                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white">Micro-Earthquake GAN</h3>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Micro-Earthquake GAN</h3>
                     <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Generating synthetic seismic waveforms to augment sparse training catalogs.</p>
                     <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Read Abstract</a>
                 </div>
@@ -175,11 +176,12 @@
         </div>
     </section>
 
-    <!-- Publications -->
+    <!-- Publications Section -->
     <section id="publications" class="py-32 px-6 bg-slate-50/50 dark:bg-zinc-900/20">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Selected Publications</h2>
-            <div class="space-y-12 mb-16">
+            
+            <div class="space-y-12 mb-20">
                 <div class="reveal">
                     <span class="text-xs font-mono text-slate-400">2024 / Nature Geoscience</span>
                     <h3 class="text-xl font-bold mt-2 mb-2 dark:text-white">Deep learning reveals hidden seismicity at subduction zones</h3>
@@ -192,15 +194,16 @@
                 </div>
             </div>
             
-            <div class="flex flex-col sm:flex-row gap-4 reveal">
-                <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="flex-1 py-4 px-6 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium dark:text-white">
-                    <i data-lucide="graduation-cap" class="w-5 h-5 text-accent"></i> Google Scholar
+            <!-- Research Footprint: Scholar, ORCID, GitHub grouped together -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal">
+                <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-xs dark:text-white uppercase tracking-widest">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-accent"></i> Scholar
                 </a>
-                <a href="https://orcid.org/0000-0002-8142-4037" target="_blank" class="flex-1 py-4 px-6 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium dark:text-white">
-                    <i data-lucide="id-card" class="w-5 h-5 text-accent"></i> ORCID
+                <a href="https://orcid.org/0000-0002-8142-4037" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-xs dark:text-white uppercase tracking-widest">
+                    <i data-lucide="id-card" class="w-4 h-4 text-accent"></i> ORCID
                 </a>
-                <a href="https://github.com/lauralaurenti" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1">
-                    <i data-lucide="github" class="w-6 h-6"></i></a>
+                <a href="https://github.com/lauralaurenti" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-xs dark:text-white uppercase tracking-widest">
+                    <i data-lucide="github" class="w-4 h-4 text-accent"></i> GitHub
                 </a>
             </div>
         </div>
@@ -210,25 +213,27 @@
     <footer id="contact" class="py-32 px-6">
         <div class="max-w-5xl mx-auto border-t border-slate-100 dark:border-zinc-900 pt-16 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="reveal">
-                <h2 class="text-4xl font-bold tracking-tighter mb-4 dark:text-white">Let's connect.</h2>
-                <p class="text-slate-500">Zürich, Switzerland</p>
+                <h2 class="text-4xl font-bold tracking-tighter mb-4 dark:text-white italic">Let's connect.</h2>
+                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Postdoctoral Researcher / Zürich, CH</p>
             </div>
             <div class="flex items-center gap-8 reveal">
-                <a href="mailto:laurenti.laura.work@gmail.com" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                    <i data-lucide="mail" class="w-5 h-5 group-hover:text-accent transition-colors"></i> Email
+                <a href="mailto:laurenti.laura.work@gmail.com" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4 group-hover:text-accent transition-colors"></i> Email
                 </a>
-                <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                    <i data-lucide="linkedin" class="w-5 h-5 group-hover:text-accent transition-colors"></i> LinkedIn
+                <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                    <i data-lucide="linkedin" class="w-4 h-4 group-hover:text-accent transition-colors"></i> LinkedIn
                 </a>
             </div>
         </div>
         <div class="max-w-5xl mx-auto mt-24 text-[10px] uppercase tracking-[0.4em] text-slate-300 dark:text-zinc-700 text-center md:text-left font-mono">
-            &copy; 2025 Laura Laurenti
+            &copy; 2025 Laura Laurenti &mdash; ETH Zürich
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
+        
+        // Scroll Reveal logic
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
