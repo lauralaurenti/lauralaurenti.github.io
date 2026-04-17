@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ darkMode: false, mobileMenu: false }" :class="{ 'dark': darkMode }" class="scroll-smooth">
+<html lang="en" x-data="{ 
+    darkMode: localStorage.getItem('theme') === 'dark', 
+    mobileMenu: false,
+    toggleTheme() {
+        this.darkMode = !this.darkMode;
+        localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+    }
+}" :class="{ 'dark': darkMode }" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laura Laurenti | AI & Seismology</title>
     
+    <!-- Google Verification Tag -->
+    <meta name="google-site-verification" content="130b037ae569b5f5" />
+
     <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
                     colors: {
-                        accent: '#4f46e5', // Soft Indigo
+                        accent: '#4f46e5',
                     }
                 }
             }
@@ -29,56 +42,52 @@
 
     <style>
         [x-cloak] { display: none !important; }
-        
-        /* Fade-in Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Minimalist text sizing for AI portfolios */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; }
+        
+        /* Hidden CV Section style - ready for toggle */
+        #cv-section.hidden { display: none; }
     </style>
 </head>
 
-<body class="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-300 antialiased selection:bg-indigo-100 dark:selection:bg-indigo-900">
+<body class="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-300 antialiased selection:bg-indigo-100 dark:selection:bg-indigo-900 transition-colors duration-300 font-sans">
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 border-b border-transparent backdrop-blur-md bg-white/70 dark:bg-zinc-950/70 transition-all duration-300"
          :class="window.pageYOffset > 20 ? 'border-slate-100 dark:border-zinc-800' : ''">
         <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="font-bold text-lg tracking-tighter hover:opacity-70 transition-opacity uppercase">L. Laurenti</a>
+            <a href="#" class="font-bold text-lg tracking-tighter hover:opacity-70 transition-opacity uppercase dark:text-white">L. Laurenti</a>
             
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-10 text-[13px] font-medium uppercase tracking-widest">
-                <a href="#about" class="hover:text-accent transition-colors">About</a>
-                <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
-                <a href="#publications" class="hover:text-accent transition-colors">Publications</a>
-                <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
-                <button @click="darkMode = !darkMode" class="p-2 text-slate-400 hover:text-slate-800 dark:hover:text-white transition-colors">
+            <div class="flex items-center gap-4 md:gap-10">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <a href="#about" class="hover:text-accent transition-colors">About</a>
+                    <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
+                    <a href="#publications" class="hover:text-accent transition-colors">Publications</a>
+                    <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button @click="toggleTheme()" class="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-white transition-colors border border-slate-100 dark:border-zinc-800 rounded-full bg-white/50 dark:bg-zinc-900/50">
                     <i data-lucide="moon" x-show="!darkMode" class="w-4 h-4"></i>
                     <i data-lucide="sun" x-show="darkMode" class="w-4 h-4"></i>
                 </button>
-            </div>
 
-            <!-- Mobile Toggle -->
-            <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2 text-slate-800 dark:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Mobile Menu Overlay -->
     <div x-show="mobileMenu" x-transition x-cloak class="fixed inset-0 z-[60] bg-white dark:bg-zinc-950 p-8 flex flex-col">
         <div class="flex justify-end">
-            <button @click="mobileMenu = false"><i data-lucide="x" class="w-8 h-8"></i></button>
+            <button @click="mobileMenu = false" class="text-slate-800 dark:text-white"><i data-lucide="x" class="w-8 h-8"></i></button>
         </div>
-        <div class="flex flex-col gap-8 mt-12 text-3xl font-bold tracking-tighter">
+        <div class="flex flex-col gap-8 mt-12 text-4xl font-bold tracking-tighter dark:text-white">
             <a @click="mobileMenu = false" href="#about">About</a>
             <a @click="mobileMenu = false" href="#projects">Projects</a>
             <a @click="mobileMenu = false" href="#publications">Publications</a>
@@ -96,15 +105,15 @@
                 <p class="text-xl md:text-2xl text-slate-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-lg font-light italic">
                     I build AI systems that listen to the Earth's heartbeat to better understand seismology and fault mechanics.
                 </p>
-                <div class="flex items-center gap-6">
-                    <a href="#" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="github" class="w-6 h-6"></i></a>
-                    <a href="#" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="graduation-cap" class="w-6 h-6"></i></a>
-                    <a href="#" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                <div class="flex items-center gap-6 text-slate-500 dark:text-zinc-400">
+                    <a href="https://github.com/lauralaurenti" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="graduation-cap" class="w-6 h-6"></i></a>
+                    <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
                 </div>
             </div>
             <div class="reveal flex justify-center md:justify-end">
-                <div class="w-64 h-80 bg-slate-100 dark:bg-zinc-900 rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Laura Laurenti" class="w-full h-full object-cover">
+                <div class="w-64 h-80 bg-slate-100 dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-zinc-800">
+                    <img src="images/profilePic.jpg" alt="Laura Laurenti" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -120,19 +129,28 @@
                         I am currently a Postdoctoral Researcher at <strong>ETH Zürich</strong>. My work focuses on the intersection of deep learning and geophysical signals. I am particularly interested in how self-supervised learning can reveal hidden patterns in seismic data.
                     </p>
                     <p>
-                        Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I believe that open science and efficient algorithms are key to building safer communities.
+                        Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I focus on merging physical constraints with data-driven models.
                     </p>
                 </div>
             </div>
             <div class="md:col-span-2 reveal">
-                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">Research Interests</h2>
+                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8 font-sans">Research Interests</h2>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium">Neural Seismology</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium">Deep Learning</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium">Signal Processing</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium">Self-Supervised Learning</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium">Physics-Informed AI</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Neural Seismology</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Deep Learning</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300 font-mono">Signal Processing</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section (Hidden as requested) -->
+    <section id="cv-section" class="hidden py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Curriculum Vitae</h2>
+            <div class="bg-slate-50 dark:bg-zinc-900 p-8 rounded-2xl flex justify-between items-center">
+                <span class="font-medium dark:text-white">CV_Laura_Laurenti.pdf</span>
+                <a href="CV.pdf" target="_blank" class="px-6 py-2 bg-accent text-white rounded-lg font-bold">Download</a>
             </div>
         </div>
     </section>
@@ -142,73 +160,44 @@
         <div class="max-w-5xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Selected Projects</h2>
             <div class="grid md:grid-cols-2 gap-16">
-                <!-- Project 1 -->
                 <div class="reveal group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 overflow-hidden">
-                        <!-- Placeholder for project visual -->
-                        <div class="w-full h-full flex items-center justify-center text-slate-300 italic">Project Visual</div>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">SeismicNet 2.0</h3>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">A high-fidelity Transformer architecture for multi-station phase picking and event localization.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent">Code <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">SeismicNet_Architecture</div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white">SeismicNet 2.0</h3>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">A high-fidelity Transformer architecture for multi-station phase picking.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">View Code</a>
                 </div>
-                <!-- Project 2 -->
                 <div class="reveal group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 overflow-hidden">
-                        <div class="w-full h-full flex items-center justify-center text-slate-300 italic">Project Visual</div>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">Micro-Earthquake Gan</h3>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Generating synthetic seismic waveforms to augment sparse training catalogs for low-magnitude event detection.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent">Demo <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">GAN_Workflow</div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white">Micro-Earthquake GAN</h3>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Generating synthetic seismic waveforms to augment sparse training catalogs.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Read Abstract</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications -->
     <section id="publications" class="py-32 px-6 bg-slate-50/50 dark:bg-zinc-900/20">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Selected Publications</h2>
-            
             <div class="space-y-12 mb-16">
-                <!-- Pub 1 -->
                 <div class="reveal">
                     <span class="text-xs font-mono text-slate-400">2024 / Nature Geoscience</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Deep learning reveals hidden seismicity at subduction zones</h3>
+                    <h3 class="text-xl font-bold mt-2 mb-2 dark:text-white">Deep learning reveals hidden seismicity at subduction zones</h3>
                     <p class="text-slate-600 dark:text-zinc-400"><strong>Laurenti, L.</strong>, Smith, J., & Doe, A.</p>
-                    <div class="mt-4 flex gap-4 text-xs font-bold uppercase tracking-widest">
-                        <a href="#" class="text-accent hover:underline">Paper</a>
-                        <a href="#" class="text-slate-400 hover:text-slate-800 dark:hover:text-white">BibTeX</a>
-                    </div>
                 </div>
-
-                <!-- Pub 2 -->
                 <div class="reveal">
                     <span class="text-xs font-mono text-slate-400">2023 / JGR: Solid Earth</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Physics-informed neural networks for wave propagation</h3>
+                    <h3 class="text-xl font-bold mt-2 mb-2 dark:text-white">Physics-informed neural networks for wave propagation</h3>
                     <p class="text-slate-600 dark:text-zinc-400">Zhang, Y., <strong>Laurenti, L.</strong>, & Müller, B.</p>
-                    <div class="mt-4 flex gap-4 text-xs font-bold uppercase tracking-widest">
-                        <a href="#" class="text-accent hover:underline">Paper</a>
-                    </div>
-                </div>
-
-                <!-- Pub 3 -->
-                <div class="reveal">
-                    <span class="text-xs font-mono text-slate-400">2022 / NeurIPS</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Self-supervised seismic representation learning</h3>
-                    <p class="text-slate-600 dark:text-zinc-400"><strong>Laurenti, L.</strong> & Lee, K.</p>
-                    <div class="mt-4 flex gap-4 text-xs font-bold uppercase tracking-widest">
-                        <a href="#" class="text-accent hover:underline">Paper</a>
-                    </div>
                 </div>
             </div>
-
-            <!-- Full List Buttons -->
+            
             <div class="flex flex-col sm:flex-row gap-4 reveal">
-                <a href="#" class="flex-1 py-4 px-6 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-colors font-medium">
+                <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="flex-1 py-4 px-6 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium dark:text-white">
                     <i data-lucide="graduation-cap" class="w-5 h-5 text-accent"></i> Google Scholar
                 </a>
-                <a href="#" class="flex-1 py-4 px-6 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-colors font-medium">
+                <a href="https://orcid.org/0000-0002-8142-4037" target="_blank" class="flex-1 py-4 px-6 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium dark:text-white">
                     <i data-lucide="id-card" class="w-5 h-5 text-accent"></i> ORCID
                 </a>
             </div>
@@ -219,43 +208,32 @@
     <footer id="contact" class="py-32 px-6">
         <div class="max-w-5xl mx-auto border-t border-slate-100 dark:border-zinc-900 pt-16 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="reveal">
-                <h2 class="text-4xl font-bold tracking-tighter mb-4">Let's connect.</h2>
-                <p class="text-slate-500">I am currently based in Zürich, Switzerland.</p>
+                <h2 class="text-4xl font-bold tracking-tighter mb-4 dark:text-white">Let's connect.</h2>
+                <p class="text-slate-500">Zürich, Switzerland</p>
             </div>
             <div class="flex items-center gap-8 reveal">
-                <a href="mailto:laura.laurenti@erdw.ethz.ch" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <a href="mailto:laurenti.laura.work@gmail.com" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
                     <i data-lucide="mail" class="w-5 h-5 group-hover:text-accent transition-colors"></i> Email
                 </a>
-                <a href="#" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
                     <i data-lucide="linkedin" class="w-5 h-5 group-hover:text-accent transition-colors"></i> LinkedIn
                 </a>
             </div>
         </div>
-        <div class="max-w-5xl mx-auto mt-24 text-[10px] uppercase tracking-[0.4em] text-slate-300 dark:text-zinc-700 text-center md:text-left">
-            &copy; 2025 Laura Laurenti &mdash; Designed for Impact
+        <div class="max-w-5xl mx-auto mt-24 text-[10px] uppercase tracking-[0.4em] text-slate-300 dark:text-zinc-700 text-center md:text-left font-mono">
+            &copy; 2025 Laura Laurenti
         </div>
     </footer>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
-
-        // Reveal animations on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
