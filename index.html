@@ -45,8 +45,6 @@
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; }
-        
-        /* CV Section hidden by default */
         #cv-section.hidden { display: none; }
     </style>
 </head>
@@ -60,7 +58,6 @@
             <a href="#" class="font-bold text-lg tracking-tighter hover:opacity-70 transition-opacity uppercase dark:text-white">L. Laurenti</a>
             
             <div class="flex items-center gap-4 md:gap-10">
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
                     <a href="#about" class="hover:text-accent transition-colors">About</a>
                     <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
@@ -68,13 +65,11 @@
                     <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
                 </div>
 
-                <!-- Theme Toggle -->
                 <button @click="toggleTheme()" class="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-white transition-colors border border-slate-100 dark:border-zinc-800 rounded-full bg-white/50 dark:bg-zinc-900/50">
                     <i data-lucide="moon" x-show="!darkMode" class="w-4 h-4"></i>
                     <i data-lucide="sun" x-show="darkMode" class="w-4 h-4"></i>
                 </button>
 
-                <!-- Mobile Menu Button -->
                 <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2 text-slate-800 dark:text-white">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
@@ -111,7 +106,6 @@
                 </div>
             </div>
             <div class="reveal flex justify-center md:justify-end">
-                <!-- Photo in full color -->
                 <div class="w-64 h-80 bg-slate-100 dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-zinc-800">
                     <img src="images/profilePic.jpg" alt="Laura Laurenti" class="w-full h-full object-cover">
                 </div>
@@ -121,10 +115,10 @@
 
     <!-- About Section -->
     <section id="about" class="py-32 px-6 bg-slate-50/50 dark:bg-zinc-900/20">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-5 gap-16">
-            <div class="md:col-span-3 reveal">
+        <div class="max-w-5xl mx-auto">
+            <div class="max-w-3xl reveal text-left">
                 <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">About / Bio</h2>
-                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400">
+                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400 mb-20">
                     <p class="mb-6">
                         I am currently a Postdoctoral Researcher at <strong>ETH Zürich</strong>. My work focuses on the intersection of deep learning and geophysical signals. I am particularly interested in how self-supervised learning can reveal hidden patterns in seismic data.
                     </p>
@@ -132,19 +126,18 @@
                         Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I focus on merging physical constraints with data-driven models to improve predictive accuracy.
                     </p>
                 </div>
-            </div>
-            <div class="md:col-span-2 reveal">
+
                 <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">Research Interests</h2>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Neural Seismology</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300 font-mono">Deep Learning</span>
-                    <span class="px-4 py-2 rounded-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-sm font-medium dark:text-zinc-300">Signal Processing</span>
+                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400">
+                    <p>
+                        My current research agenda involves <strong>Neural Seismology</strong>, where we leverage Large Language Models (LLMs) and Transformer architectures to classify seismic phases. I am also exploring <strong>Physics-Informed Neural Networks</strong> to ensure that AI-generated predictions adhere to fundamental physical laws.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CV Section (Hidden as requested) -->
+    <!-- CV Section (Hidden) -->
     <section id="cv-section" class="hidden py-32 px-6">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Curriculum Vitae</h2>
@@ -176,9 +169,9 @@
         </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications Section (Container updated to max-w-5xl) -->
     <section id="publications" class="py-32 px-6 bg-slate-50/50 dark:bg-zinc-900/20">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Selected Publications</h2>
             
             <div class="space-y-12 mb-20">
@@ -194,22 +187,22 @@
                 </div>
             </div>
             
-            <!-- Research Footprint: Scholar, ORCID, GitHub grouped together -->
+            <!-- Grouped Research Links -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal">
-                <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-xs dark:text-white uppercase tracking-widest">
+                <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-[10px] dark:text-white uppercase tracking-[0.2em]">
                     <i data-lucide="graduation-cap" class="w-4 h-4 text-accent"></i> Scholar
                 </a>
-                <a href="https://orcid.org/0000-0002-8142-4037" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-xs dark:text-white uppercase tracking-widest">
+                <a href="https://orcid.org/0000-0002-8142-4037" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-[10px] dark:text-white uppercase tracking-[0.2em]">
                     <i data-lucide="id-card" class="w-4 h-4 text-accent"></i> ORCID
                 </a>
-                <a href="https://github.com/lauralaurenti" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-xs dark:text-white uppercase tracking-widest">
+                <a href="https://github.com/lauralaurenti" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all font-medium text-[10px] dark:text-white uppercase tracking-[0.2em]">
                     <i data-lucide="github" class="w-4 h-4 text-accent"></i> GitHub
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Footer -->
     <footer id="contact" class="py-32 px-6">
         <div class="max-w-5xl mx-auto border-t border-slate-100 dark:border-zinc-900 pt-16 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="reveal">
@@ -232,8 +225,6 @@
 
     <script>
         lucide.createIcons();
-        
-        // Scroll Reveal logic
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
