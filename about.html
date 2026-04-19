@@ -10,8 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laura Laurenti | Home</title>
-    <meta name="google-site-verification" content="130b037ae569b5f5" />
+    <title>Laura Laurenti | About</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -31,10 +30,10 @@
         [x-cloak] { display: none !important; }
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; }
+        #cv-section.hidden { display: none; }
     </style>
 </head>
-<body class="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-300 antialiased selection:bg-emerald-100 dark:selection:bg-emerald-900 transition-colors duration-300 font-sans">
+<body class="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-300 antialiased pt-32 transition-colors duration-300 font-sans">
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 border-b border-transparent backdrop-blur-md bg-white/70 dark:bg-zinc-950/70 transition-all duration-300">
@@ -42,8 +41,8 @@
             <a href="index.html" class="font-bold text-lg tracking-tighter hover:opacity-70 transition-opacity uppercase dark:text-white">L. Laurenti</a>
             <div class="flex items-center gap-4 md:gap-10">
                 <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
-                    <a href="index.html" class="text-accent">Home</a>
-                    <a href="about.html" class="hover:text-accent transition-colors">About</a>
+                    <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                    <a href="about.html" class="text-accent">About</a>
                     <a href="publications.html" class="hover:text-accent transition-colors">Publications</a>
                 </div>
                 <button @click="toggleTheme()" class="p-2 text-slate-500 hover:text-accent dark:text-zinc-400 dark:hover:text-accent transition-colors border border-slate-100 dark:border-zinc-800 rounded-full bg-white/50 dark:bg-zinc-900/50">
@@ -59,59 +58,51 @@
     <div x-show="mobileMenu" x-transition x-cloak class="fixed inset-0 z-[60] bg-white dark:bg-zinc-950 p-8 flex flex-col">
         <div class="flex justify-end"><button @click="mobileMenu = false" class="text-slate-800 dark:text-white"><i data-lucide="x" class="w-8 h-8"></i></button></div>
         <div class="flex flex-col gap-8 mt-12 text-4xl font-bold tracking-tighter dark:text-white">
-            <a href="index.html" class="text-accent">Home</a>
-            <a href="about.html" @click="mobileMenu = false">About</a>
+            <a href="index.html" @click="mobileMenu = false">Home</a>
+            <a href="about.html" class="text-accent">About</a>
             <a href="publications.html" @click="mobileMenu = false">Publications</a>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-20 px-6">
-        <div class="max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
-            <div class="reveal active">
-                <h1 class="hero-title font-bold tracking-tighter text-slate-900 dark:text-white mb-6">
-                    Hi, I'm Laura. <br>
-                    <span class="text-slate-400 text-5xl font-medium tracking-tight block mt-2">
-                        Advancing Seismology with Artificial Intelligence.
-                    </span>
-                </h1>
-                <p class="text-xl md:text-2xl text-slate-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-lg font-light italic">
-                    I am a Postdoctoral Researcher at <strong>ETH Zürich</strong>, where I develop AI-driven tools to better understand seismic activity and the physics of fault mechanics. My work is dedicated to <strong>bridging the gap between machine learning and earth sciences</strong>, as I believe that integrating deep learning with physical principles is the key to unlocking the next generation of geophysical insights.
-                </p>
-                <div class="flex items-center gap-6 text-slate-500 dark:text-zinc-400">
-                    <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-                    <a href="mailto:laurenti.laura.work@gmail.com" class="hover:text-accent transition-transform hover:-translate-y-1"><i data-lucide="mail" class="w-6 h-6"></i></a>
+    <!-- Bio & Interests -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="max-w-3xl reveal active">
+                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">About / Bio</h2>
+                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400 mb-20">
+                    <p class="mb-6">
+                        I am currently a Postdoctoral Researcher at <strong>ETH Zürich</strong>. My work focuses on the intersection of deep learning and geophysical signals. I am particularly interested in how self-supervised learning can reveal hidden patterns in seismic data.
+                    </p>
+                    <p>
+                        Previously, I completed my PhD where I developed neural architectures for real-time earthquake early warning systems. I focus on merging physical constraints with data-driven models to improve predictive accuracy.
+                    </p>
                 </div>
-            </div>
-            <div class="reveal active flex justify-center md:justify-end">
-                <div class="w-64 h-80 bg-slate-100 dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-zinc-800">
-                    <img src="images/profilePic.jpg" alt="Laura Laurenti" class="w-full h-full object-cover">
+
+                <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-8">Research Interests</h2>
+                <div class="prose dark:prose-invert prose-slate text-lg leading-relaxed text-slate-600 dark:text-zinc-400">
+                    <p>
+                        My current research agenda involves <strong>Neural Seismology</strong>, where we leverage Large Language Models (LLMs) and Transformer architectures to classify seismic phases. I am also exploring <strong>Physics-Informed Neural Networks</strong> to ensure that AI-generated predictions adhere to fundamental physical laws.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-24 px-6 border-t border-slate-50 dark:border-zinc-900">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-left">
-                <h2 class="text-4xl font-bold tracking-tighter mb-4 dark:text-white italic text-slate-900 dark:text-white">Let's connect.</h2>
-                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Postdoctoral Researcher / Zürich, CH</p>
-            </div>
-            <div class="flex items-center gap-8">
-                <a href="mailto:laurenti.laura.work@gmail.com" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-slate-500 hover:text-accent transition-colors">
-                    <i data-lucide="mail" class="w-4 h-4"></i> Email
-                </a>
-                <a href="https://linkedin.com/in/lauralaurenti/" target="_blank" class="group flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-slate-500 hover:text-accent transition-colors">
-                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
-                </a>
+    <!-- CV Section (Hidden) If you want the CV section to simply appear on the page like your other sections, remove the hidden class from the <section> tag. -->
+    <section id="cv-section" class="hidden py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Curriculum Vitae</h2>
+            <div class="bg-slate-50 dark:bg-zinc-900 p-8 rounded-2xl flex justify-between items-center border border-slate-100 dark:border-zinc-800">
+                <span class="font-medium dark:text-white">CV_Laura_Laurenti.pdf</span>
+                <a href="CV.pdf" target="_blank" class="px-6 py-2 bg-accent text-white rounded-lg font-bold">Download</a>
             </div>
         </div>
-        <div class="max-w-5xl mx-auto mt-24 text-[10px] uppercase tracking-[0.4em] text-slate-300 dark:text-zinc-700 text-center md:text-left font-mono">
-            &copy; Laura Laurenti <!--&mdash; ETH Zürich-->
-        </div>
-    </footer>
+    </section>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, {threshold: 0.1});
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
