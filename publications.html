@@ -67,55 +67,6 @@
     <section class="py-20 px-6">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16 font-sans">Selected Publications</h2>
-            
-            <div class="grid md:grid-cols-2 gap-16 mb-32">
-                
-                <!-- Publication 1 -->
-                <div class="reveal active group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
-                        <!-- Replace with real image: <img src="images/pub1.jpg" class="w-full h-full object-cover"> -->
-                        waveform_detection_analysis
-                    </div>
-                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Deep learning reveals hidden seismicity at subduction zones</h3>
-                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., van der Meer, S., & Giardini, D. (2024), Nature Geoscience.</p>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Developed a customized neural architecture to detect micro-seismic events in high-noise subduction environments, revealing previously uncatalogued fault activity.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
-                </div>
-
-                <!-- Publication 2 -->
-                <div class="reveal active group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
-                        physics_informed_pinn
-                    </div>
-                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Physics-informed neural networks for wave propagation</h3>
-                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Zhang, Y., Laurenti, L., & Müller, B. (2023), JGR: Solid Earth.</p>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Integration of elastodynamic wave equations into neural loss functions to ensure geophysical consistency in deep learning-based wavefield predictions.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
-                </div>
-
-                <!-- Publication 3 -->
-                <div class="reveal active group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
-                        ssl_representation_learning
-                    </div>
-                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Self-supervised seismic representation learning</h3>
-                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., & Lee, K. (2022), NeurIPS.</p>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Leveraging massive unlabeled seismic catalogs via self-supervised pre-training to improve downstream tasks like event classification and localization.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
-                </div>
-
-                <!-- Publication 4 -->
-                <div class="reveal active group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
-                        gnn_early_warning
-                    </div>
-                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Real-time earthquake warning using Graph Neural Networks</h3>
-                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., Smith, J., & Doe, A. (2021), Seismological Research Letters.</p>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Proposed a GNN-based framework for earthquake early warning that utilizes station-to-station correlations to improve magnitude estimation speed.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
-                </div>
-
-            </div>
 
             <!-- Representative Text Section -->
             <div class="max-w-3xl mx-auto text-center mb-12 reveal active">
@@ -125,7 +76,7 @@
             </div>
             
             <!-- Research Footprint Buttons -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal active">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-20 reveal active">
                 <!-- Scholar -->
                 <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 bg-transparent hover:bg-slate-50 dark:hover:bg-zinc-900 transition-all font-medium text-[10px] text-slate-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent uppercase tracking-[0.2em]">
                     <i data-lucide="graduation-cap" class="w-4 h-4"></i> Scholar
@@ -140,6 +91,58 @@
                     GitHub
                 </a>
             </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 mb-32">
+                
+                <!-- Publication 1 -->
+                <div class="reveal active group">
+                    <div class="aspect-video bg-white dark:bg-white rounded-xl mb-6 overflow-hidden border border-slate-200 dark:border-zinc-800 shadow-sm">
+                        <img src="images/TestingAudioCompressionAutoencoders.jpg" class="w-full h-full object-contain"> 
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Testing Audio Compression Autoencoders for Seismology: Moving Toward Foundation Models</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., Johnson, C. W., Trappolini, D., Tinti, E., Galasso, F., & Marone, C. (2026), Journal of Geophysical Research: Machine Learning and Computation, 3, e2025JH000787</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Explores how audio compression autoencoders can be adapted to seismic waveforms, with the goal of learning scalable representations that support future foundation models for seismology.</p>
+                    <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JH000787" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="reveal active group">
+                    <div class="aspect-video bg-white dark:bg-white rounded-xl mb-6 overflow-hidden border border-slate-200 dark:border-zinc-800 shadow-sm">
+                        <img src="images/probing_evolution_fault_properties.jpg" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Probing the evolution of fault properties during the seismic cycle with deep learning</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., Paoletti, G., Tinti, E., Galasso, F., Collettini, C., & Marone, C. (2024). Nature Communications, 15, 10025.</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Uses deep learning to study how fault properties change through the seismic cycle, connecting waveform patterns to evolving physical processes in fault zones, to identify foreshocks and aftershocks.</p>
+                    <a href="https://www.nature.com/articles/s41467-024-54153-w" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="reveal active group">
+                    
+                    <div class="aspect-video bg-white dark:bg-white rounded-xl mb-6 overflow-hidden border border-slate-200 dark:border-zinc-800 shadow-sm">
+                        <img src="images/Deep_learning_laboratory_earthquake.jpg" class="w-full h-full object-contain"> 
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Deep learning for laboratory earthquake prediction and autoregressive forecasting of fault zone stress</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., Tinti, E., Galasso, F., Franco, L., & Marone, C. (2022). Earth and Planetary Science Letters, 598, 117825.</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Applies deep neural networks to laboratory earthquake data to predict and forecast stress evolution in fault zones and time to failure, linking machine learning with earthquake physics.</p>
+                    <a href="https://www.sciencedirect.com/science/article/pii/S0012821X22004617" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="reveal active group">
+                    
+                    <div class="aspect-video bg-white dark:bg-white rounded-xl mb-6 overflow-hidden border border-slate-200 dark:border-zinc-800 shadow-sm">
+                        <img src="images/Cold_diffusion_seismic_denoising.jpg" class="w-full h-full object-contain"> 
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Cold diffusion model for seismic denoising.</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Trappolini, D., Laurenti, L., Poggiali, G., Tinti, E., Galasso, F., Michelini, A., & Marone, C. (2024). Journal of Geophysical Research: Machine Learning and Computation, 1, e2024JH000179. </p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Applies cold diffusion models to seismic denoising, showing how generative modeling can help recover cleaner waveforms from noisy observations.</p>
+                    <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024JH000179" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
+                </div>
+
+            </div>
+
+            
         </div>
     </section>
 
