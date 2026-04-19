@@ -63,25 +63,68 @@
         </div>
     </div>
 
-    <!-- Publications List -->
+    <!-- Publications Featured Grid -->
     <section class="py-20 px-6">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16">Selected Publications</h2>
+            <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16 font-sans">Selected Publications</h2>
             
-            <div class="space-y-12 mb-20 max-w-3xl">
-                <div class="reveal active text-left">
-                    <span class="text-xs font-mono text-slate-400 italic">2024 / Nature Geoscience</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2 dark:text-white">Deep learning reveals hidden seismicity at subduction zones</h3>
-                    <p class="text-slate-600 dark:text-zinc-400 leading-relaxed"><strong>Laurenti, L.</strong>, Smith, J., & Doe, A.</p>
+            <div class="grid md:grid-cols-2 gap-16 mb-32">
+                
+                <!-- Publication 1 -->
+                <div class="reveal active group">
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
+                        <!-- Replace with real image: <img src="images/pub1.jpg" class="w-full h-full object-cover"> -->
+                        waveform_detection_analysis
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Deep learning reveals hidden seismicity at subduction zones</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., van der Meer, S., & Giardini, D. (2024), Nature Geoscience.</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Developed a customized neural architecture to detect micro-seismic events in high-noise subduction environments, revealing previously uncatalogued fault activity.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
                 </div>
-                <div class="reveal active text-left">
-                    <span class="text-xs font-mono text-slate-400 italic">2023 / JGR: Solid Earth</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2 dark:text-white">Physics-informed neural networks for wave propagation</h3>
-                    <p class="text-slate-600 dark:text-zinc-400 leading-relaxed">Zhang, Y., <strong>Laurenti, L.</strong>, & Müller, B.</p>
+
+                <!-- Publication 2 -->
+                <div class="reveal active group">
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
+                        physics_informed_pinn
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Physics-informed neural networks for wave propagation</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Zhang, Y., Laurenti, L., & Müller, B. (2023), JGR: Solid Earth.</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Integration of elastodynamic wave equations into neural loss functions to ensure geophysical consistency in deep learning-based wavefield predictions.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
                 </div>
+
+                <!-- Publication 3 -->
+                <div class="reveal active group">
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
+                        ssl_representation_learning
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Self-supervised seismic representation learning</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., & Lee, K. (2022), NeurIPS.</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Leveraging massive unlabeled seismic catalogs via self-supervised pre-training to improve downstream tasks like event classification and localization.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="reveal active group">
+                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono overflow-hidden">
+                        gnn_early_warning
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Real-time earthquake warning using Graph Neural Networks</h3>
+                    <p class="text-xs text-slate-400 dark:text-zinc-500 mb-3 italic">Laurenti, L., Smith, J., & Doe, A. (2021), Seismological Research Letters.</p>
+                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Proposed a GNN-based framework for earthquake early warning that utilizes station-to-station correlations to improve magnitude estimation speed.</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Full Paper</a>
+                </div>
+
+            </div>
+
+            <!-- Representative Text Section -->
+            <div class="max-w-3xl mx-auto text-center mb-12 reveal active">
+                <p class="text-slate-600 dark:text-zinc-400 font-sans leading-relaxed text-lg">
+                    Here are some representative projects which I have worked on. A complete list of my publications can be found on Google Scholar, Orcid, and GitHub. Links are below.
+                </p>
             </div>
             
-            <!-- Research Footprint Group -->
+            <!-- Research Footprint Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal active">
                 <!-- Scholar -->
                 <a href="https://scholar.google.com/citations?hl=en&user=oh4AKj0AAAAJ&view_op=list_works&authuser=3" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 bg-transparent hover:bg-slate-50 dark:hover:bg-zinc-900 transition-all font-medium text-[10px] text-slate-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent uppercase tracking-[0.2em]">
@@ -91,18 +134,27 @@
                 <a href="https://orcid.org/0000-0002-8142-4037" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 bg-transparent hover:bg-slate-50 dark:hover:bg-zinc-900 transition-all font-medium text-[10px] text-slate-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent uppercase tracking-[0.2em]">
                     <i data-lucide="id-card" class="w-4 h-4"></i> ORCID
                 </a>
-                <!-- GitHub (Using raw SVG for guaranteed visibility) -->
+                <!-- GitHub -->
                 <a href="https://github.com/lauralaurenti" target="_blank" class="py-4 px-4 border border-slate-200 dark:border-zinc-800 rounded-xl flex items-center justify-center gap-3 bg-transparent hover:bg-slate-50 dark:hover:bg-zinc-900 transition-all font-medium text-[10px] text-slate-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent uppercase tracking-[0.2em]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-4.5a4.5 4.5 0 0 0-1-3.5 3.5 3.5 0 0 0-1-3.5c-1 0-3 1.5-3 1.5a10.8 10.8 0 0 0-6 0C7 2.5 5 1 5 1a3.5 3.5 0 0 0-1 3.5 4.5 4.5 0 0 0-1 3.5c0 2.5 3 4.5 6 4.5a4.8 4.8 0 0 0-1 3.5v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-4.5a4.5 4.5 0 0 0-1-3.5 3.5 3.5 0 0 0-1-3.5 3.5 3.5 0 0 0-1-3.5c-1 0-3 1.5-3 1.5a10.8 10.8 0 0 0-6 0C7 2.5 5 1 5 1a3.5 3.5 0 0 0-1 3.5 4.5 4.5 0 0 0-1 3.5c0 2.5 3 4.5 6 4.5a4.8 4.8 0 0 0-1 3.5v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                     GitHub
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Minimalist Footer -->
+    <footer class="py-16 text-center text-[10px] uppercase tracking-[0.4em] text-slate-300 dark:text-zinc-700 font-mono">
+        &copy; 2025 Laura Laurenti &mdash; ETH Zürich
+    </footer>
+
     <script>
         lucide.createIcons();
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, {threshold: 0.1});
+        const observer = new IntersectionObserver((entries) => { 
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) entry.target.classList.add('active'); 
+            }); 
+        }, {threshold: 0.1});
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
