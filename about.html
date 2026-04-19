@@ -88,27 +88,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="py-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-xs uppercase tracking-[0.3em] font-bold text-slate-400 mb-16 font-sans">Selected Projects</h2>
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="reveal active group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">SeismicNet_Architecture</div>
-                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">SeismicNet 2.0</h3>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">A high-fidelity Transformer architecture for multi-station phase picking.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">View Code</a>
-                </div>
-                <div class="reveal active group">
-                    <div class="aspect-video bg-slate-100 dark:bg-zinc-900 rounded-xl mb-6 flex items-center justify-center text-slate-400 italic text-sm font-mono">GAN_Workflow</div>
-                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors dark:text-white uppercase tracking-tight">Micro-Earthquake GAN</h3>
-                    <p class="text-slate-500 dark:text-zinc-400 leading-relaxed mb-4">Generating synthetic seismic waveforms to augment sparse training catalogs.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent italic">Read Abstract</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <script>
         lucide.createIcons();
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, {threshold: 0.1});
