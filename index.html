@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" x-data="{ 
-    darkMode: localStorage.getItem('theme') === 'dark', 
+    darkMode: false, 
     mobileMenu: false,
+    init() {
+        try {
+            this.darkMode = localStorage.getItem('theme') === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        } catch (e) {
+            this.darkMode = false;
+        }
+    },
     toggleTheme() {
         this.darkMode = !this.darkMode;
-        localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+        try {
+            localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+        } catch (e) {}
     }
 }" :class="{ 'dark': darkMode }" class="scroll-smooth">
 <head>
@@ -46,7 +56,9 @@
                     <a href="about.html" class="hover:text-accent transition-colors">About</a>
                     <a href="publications.html" class="hover:text-accent transition-colors">Publications</a>
                 </div>
-                <button @click="toggleTheme()" class="p-2 text-slate-500 hover:text-accent dark:text-zinc-400 dark:hover:text-accent transition-colors border border-slate-100 dark:border-zinc-800 rounded-full bg-white/50 dark:bg-zinc-900/50">
+                <button @click.stop="toggleTheme()" 
+                        type="button"
+                        class="relative z-[70] p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-white transition-colors border border-slate-100 dark:border-zinc-800 rounded-full bg-white/50 dark:bg-zinc-900/50">
                     <i data-lucide="moon" x-show="!darkMode" class="w-4 h-4"></i>
                     <i data-lucide="sun" x-show="darkMode" class="w-4 h-4"></i>
                 </button>
